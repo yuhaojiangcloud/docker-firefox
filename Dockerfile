@@ -27,7 +27,7 @@ ARG FIREFOX_VERSION=120.0.1-r0
 
 # Define working directory.
 WORKDIR /tmp
-
+COPY ./fonts/* /usr/share/fonts/fonts/
 # Install Firefox.
 RUN \
 #    add-pkg --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
@@ -46,6 +46,8 @@ RUN \
         font-dejavu \
         # The following package is used to send key presses to the X process.
         xdotool \
+        mkfontscale \
+        mkfontdir \
         && \
     # Remove unneeded icons.
     find /usr/share/icons/Adwaita -type d -mindepth 1 -maxdepth 1 -not -name 16x16 -not -name scalable -exec rm -rf {} ';' && \
